@@ -12,6 +12,8 @@ class TestBaseModel(unittest.TestCase):
     """
     Test cases for the base_model
     """
+
+
     def test_str(self):
         """
         checks the string output of an instance
@@ -20,6 +22,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(base.__str__(),
                          f"[{type(base).__name__}] \
 ({base.id}) {base.__dict__}")
+
 
     def test_to_dict(self):
         """
@@ -35,6 +38,7 @@ class TestBaseModel(unittest.TestCase):
         base.save()
         self.assertNotEqual(prev_time, base.updated_at)
 
+
     def test_attr_classes(self):
         """
         checks if the right classes were use to generate attributes
@@ -45,6 +49,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(base.created_at, datetime)
         self.assertIsInstance(base.updated_at, datetime)
         self.assertNotEqual(base.id, base2.id)
+
 
     def test_save(self):
         """

@@ -8,6 +8,8 @@ from models.place import Place
 
 
 class TestBaseModel(unittest.TestCase):
+
+
     def test_str(self):
         place = Place()
         self.assertEqual(place.city_id, "")
@@ -21,6 +23,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(place.latitude, 0.0)
         self.assertEqual(place.longitude, 0.0)
         self.assertEqual(place.amenity_ids, [])
+
 
     def test_parent(self):
         place = Place()
