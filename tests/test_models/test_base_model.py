@@ -8,6 +8,7 @@ import json
 import os
 
 
+<<<<<<< HEAD
 class test_basemodel(unittest.TestCase):
     """ """
 
@@ -46,6 +47,50 @@ class test_basemodel(unittest.TestCase):
         copy.update({1: 2})
         with self.assertRaises(TypeError):
             new = BaseModel(**copy)
+=======
+class TestBaseModel(unittest.TestCase):
+    """
+    Test cases for the base_model
+    """
+
+
+    def test_str(self):
+        """
+        checks the string output of an instance
+        """
+        base = BaseModel()
+        self.assertEqual(base.__str__(),
+                         f"[{type(base).__name__}] \
+({base.id}) {base.__dict__}")
+
+
+    def test_to_dict(self):
+        """
+        checks the to_dict() function of an instance
+        """
+        base = BaseModel()
+        prev_time = base.updated_at
+        self.assertDictEqual(base.to_dict(),
+                             {'__class__': type(base).__name__,
+                              'updated_at': base.updated_at.isoformat(),
+                              'id': base.id,
+                              'created_at': base.created_at.isoformat()})
+        base.save()
+        self.assertNotEqual(prev_time, base.updated_at)
+
+
+    def test_attr_classes(self):
+        """
+        checks if the right classes were use to generate attributes
+        """
+        base = BaseModel()
+        base2 = BaseModel()
+        self.assertIsInstance(base.id, str)
+        self.assertIsInstance(base.created_at, datetime)
+        self.assertIsInstance(base.updated_at, datetime)
+        self.assertNotEqual(base.id, base2.id)
+>>>>>>> 73a076deabdb66313857081f333973f27192cb3f
+
 
     def test_save(self):
         """ Testing save """
